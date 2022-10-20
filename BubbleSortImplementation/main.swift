@@ -11,9 +11,9 @@ import Foundation
 var dataSet : [Int] = []
 
 // populate the list
-dataSet.append(Int.random(in: 1...100))
-dataSet.append(Int.random(in: 1...100))
-dataSet.append(Int.random(in: 1...100))
+for _ in 1...10 {
+    dataSet.append(Int.random(in: 1...100))
+}
 
 // print the list
 print(dump(dataSet))
