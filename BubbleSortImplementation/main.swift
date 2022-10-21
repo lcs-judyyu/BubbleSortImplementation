@@ -25,7 +25,7 @@ for _ in 1...10 {
 // print the list
 print("Unsorted:")
 print(dataSet)
-//waitForUserInput()
+waitForUserInput()
 
 var m = 1
 // loop thought the entire array "n" times until no swaps in current pass
@@ -51,7 +51,6 @@ for i in 0..<dataSet.count - 1 {
             n = true
             
         }
-        print("swapping occured: \(n)", terminator: "")
         print("")
         
     }
@@ -62,8 +61,8 @@ for i in 0..<dataSet.count - 1 {
     // print the array after the pass
     print("Array after pass \(i + 1):")
     print(dataSet)
-    //waitForUserInput()
-    print("")
+    print("Swapping occured in this pass: \(n)")
+    waitForUserInput()
     
     if n == false {
         // end the program
