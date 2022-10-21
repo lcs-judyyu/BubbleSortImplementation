@@ -25,32 +25,49 @@ for _ in 1...10 {
 // print the list
 print("Unsorted:")
 print(dataSet)
-waitForUserInput()
+//waitForUserInput()
 
-// lop thought the entire array "n" times, n = number of elements in the array
-for i in 0..<dataSet.count {
+var m = 1
+// loop thought the entire array "n" times until no swaps in current pass
+for i in 0..<dataSet.count - 1 {
+    
+    // check if there are swaps in the current pass, starting with no swaps
+    var n = false
    
     // one pass through the array to float the highest number to the end
-    for j in 0..<dataSet.count - 1 {
-
+    for j in 0..<dataSet.count - m {
+        
         // compare lest value to right value
         print("Comparison \(j + 1)...", terminator: "")
+        
         if dataSet[j] > dataSet[j + 1] {
             
             // swap values when left is greater than right
-            let temporaryValue = dataSet[j] // set aside the lest value
+            let temporaryValue = dataSet[j] // set aside the left value
             dataSet[j] = dataSet[j + 1]     // replace left with right
             dataSet[j + 1] = temporaryValue // replace right with temporary value
-            print("values were swapped", terminator: "")
+            print("values were swapped...", terminator: "")
+            // there are swaps occured in the pass
+            n = true
             
         }
+        print("swapping occured: \(n)", terminator: "")
         print("")
         
     }
     
+    // reduce one comparison after each pass
+    m += 1
+    
     // print the array after the pass
     print("Array after pass \(i + 1):")
     print(dataSet)
-    waitForUserInput()
+    //waitForUserInput()
+    print("")
+    
+    if n == false {
+        // end the program
+        exit(0)
+    }
     
 }
