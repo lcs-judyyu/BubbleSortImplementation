@@ -22,7 +22,7 @@ var dataSet : [Int] = []
 //    dataSet.append(Int.random(in: 1...100))
 //}
 
-// best case senario: sorted values
+// worst case scenario: reversely sorted values
 dataSet.append(44)
 dataSet.append(34)
 dataSet.append(32)
