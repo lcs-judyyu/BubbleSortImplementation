@@ -54,12 +54,12 @@ var sortingDataSet : [Int] = dataSet
 // start time = number of seconds since Jan. 1st, 1970
 let startTime = Date().timeIntervalSince1970
 
-// control the number of comparisons in each array
-var m = 1
-
 // loop through the array several times and get an average calculated sorting time
 // upper bound is the number of rounds of sorting
 for k in 1...8 {
+    
+    // control the number of comparisons in each array
+    var m = 1
     
     print("start sort \(k)")
     
@@ -120,9 +120,6 @@ for k in 1...8 {
     let averageElapsedTime = elapsedTime / Double(k)
     print("Average elasped time: \(averageElapsedTime) seconds after \(k) times")
     print("")
-    
-    // change the m back to 1
-    m = 1
     
     // change the sorted set back to the original set for another sorting
     sortingDataSet = dataSet
