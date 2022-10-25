@@ -26,9 +26,9 @@ var dataSet : [Int] = []
 //}
 
 // worst case scenario: reversely sorted values
-for t in 1...sizeNumber {
-    dataSet.insert(t, at: 0)
-}
+//for t in 1...sizeNumber {
+//    dataSet.insert(t, at: 0)
+//}
 
 // best case scenario: already sorted values
 //for s in 1...sizeNumber {
@@ -36,6 +36,10 @@ for t in 1...sizeNumber {
 //}
 
 // other senario: almost sorted values (biggest value is at the front)
+for r in 1...sizeNumber - 1 {
+    dataSet.append(r)
+}
+dataSet.insert(sizeNumber, at: 0)
 
 // print the list
 print("Unsorted:")
