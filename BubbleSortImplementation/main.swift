@@ -14,85 +14,111 @@ func waitForUserInput() {
     _ = readLine()
 }
 
+// list size can be adjusted
+var sizeNumber: Int = 10
+
 // create an empty list (array)
 var dataSet : [Int] = []
 
 // populate the list: random array
-//for _ in 1...10 {
+//for _ in 1...sizeNumber {
 //    dataSet.append(Int.random(in: 1...100))
 //}
 
 // worst case scenario: reversely sorted values
-dataSet.append(44)
-dataSet.append(34)
-dataSet.append(32)
-dataSet.append(31)
-dataSet.append(19)
-dataSet.append(15)
-dataSet.append(14)
-dataSet.append(6)
-dataSet.append(5)
-dataSet.append(2)
+for t in 1...sizeNumber {
+    dataSet.insert(t, at: 0)
+}
+
+// best case scenario: already sorted values
+//for s in 1...sizeNumber {
+//    dataSet.append(s)
+//}
+
+// other senario: almost sorted values (biggest value is at the front)
 
 // print the list
 print("Unsorted:")
 print(dataSet)
 //waitForUserInput()
 
+// duplicate an array for sorting
+var sortingDataSet : [Int] = dataSet
+
 // keep track of start time (epoch)
 // start time = number of seconds since Jan. 1st, 1970
 let startTime = Date().timeIntervalSince1970
 
+// control the number of comparisons in each array
 var m = 1
-// loop thought the entire array "n" times until no swaps in current pass
-for i in 0..<dataSet.count - 1 {
+
+// loop through the array several times and get an average calculated sorting time
+// upper bound is the number of rounds of sorting
+for k in 1...9 {
     
-    // check if there are swaps in the current pass, starting with no swaps
-    var swapped = false
-   
-    // one pass through the array to float the highest number to the end
-    for j in 0..<dataSet.count - m {
+    print("start sort \(k)")
+    
+    // loop thought the entire array "n" times until no swaps in current pass
+    for i in 0..<sortingDataSet.count - 1 {
         
-        // compare lest value to right value
-        print("Comparison \(j + 1)...", terminator: "")
-        
-        if dataSet[j] > dataSet[j + 1] {
+        // check if there are swaps in the current pass, starting with no swaps
+        var swapped = false
+       
+        // one pass through the array to float the highest number to the end
+        for j in 0..<sortingDataSet.count - m {
             
-            // swap values when left is greater than right
-            let temporaryValue = dataSet[j] // set aside the left value
-            dataSet[j] = dataSet[j + 1]     // replace left with right
-            dataSet[j + 1] = temporaryValue // replace right with temporary value
-            // a swap occurred
-            print("values were swapped...", terminator: "")
-            // there are swaps occured in the pass
-            swapped = true
+            // compare lest value to right value
+            print("Comparison \(j + 1)...", terminator: "")
+            
+            if sortingDataSet[j] > sortingDataSet[j + 1] {
+                
+                // swap values when left is greater than right
+                let temporaryValue = sortingDataSet[j] // set aside the left value
+                sortingDataSet[j] = sortingDataSet[j + 1]     // replace left with right
+                sortingDataSet[j + 1] = temporaryValue // replace right with temporary value
+                // a swap occurred
+                print("values were swapped...", terminator: "")
+                // there are swaps occured in the pass
+                swapped = true
+                
+            }
+            print("")
             
         }
-        print("")
+        
+        // reduce one comparison after each pass
+        m += 1
+        
+        // print the array after the pass
+        print("Array after pass \(i + 1):")
+        print(sortingDataSet)
+        print("Swapping occured in this pass: \(swapped)")
+        //waitForUserInput()
+        
+        // when no swap occurred, stop the outer loop
+        if swapped == false {
+            // end the program
+            break
+        }
         
     }
     
-    // reduce one comparison after each pass
-    m += 1
+    // get end time (seconds since epoch)
+    print("ended sort \(k)")
+    let endTime = Date().timeIntervalSince1970
+
+    // get time taken for array to sort
+    let elapsedTime = endTime - startTime
+    print(elapsedTime)
     
-    // print the array after the pass
-    print("Array after pass \(i + 1):")
-    print(dataSet)
-    print("Swapping occured in this pass: \(swapped)")
-    //waitForUserInput()
+    // calculate the average sorting time
+    let averageElapsedTime = elapsedTime / Double(k)
+    print("Sorts took \(averageElapsedTime) seconds on average after \(k) times")
+    print("")
     
-    // when no swap occurred, stop the outer loop
-    if swapped == false {
-        // end the program
-        break
-    }
+    // change the m back to 1
+    m = 1
     
+    // change the sorted set back to the original set for another sorting
+    sortingDataSet = dataSet
 }
-
-// get end time (seconds since epoch)
-print("ended")
-let endTime = Date().timeIntervalSince1970
-
-// get time taken for array to sort
-let elaspsedTime = endTime - startTime
-print("Sort took \(elaspsedTime) seconds")
