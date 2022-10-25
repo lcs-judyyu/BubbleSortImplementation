@@ -15,7 +15,7 @@ func waitForUserInput() {
 }
 
 // list size can be adjusted
-var sizeNumber: Int = 20
+var sizeNumber: Int = 8
 
 // create an empty list (array)
 var dataSet : [Int] = []
@@ -59,7 +59,7 @@ var m = 1
 
 // loop through the array several times and get an average calculated sorting time
 // upper bound is the number of rounds of sorting
-for k in 1...10 {
+for k in 1...8 {
     
     print("start sort \(k)")
     
@@ -114,10 +114,11 @@ for k in 1...10 {
 
     // get time taken for array to sort
     let elapsedTime = endTime - startTime
+    print("Total elasped time: \(elapsedTime) seconds")
     
     // calculate the average sorting time
     let averageElapsedTime = elapsedTime / Double(k)
-    print("Sorts took \(averageElapsedTime) seconds on average after \(k) times")
+    print("Average elasped time: \(averageElapsedTime) seconds after \(k) times")
     print("")
     
     // change the m back to 1
