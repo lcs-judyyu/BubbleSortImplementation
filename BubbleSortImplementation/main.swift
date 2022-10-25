@@ -15,15 +15,16 @@ func waitForUserInput() {
 }
 
 // list size can be adjusted
-var sizeNumber: Int = 10
+var sizeNumber: Int = 20
 
 // create an empty list (array)
 var dataSet : [Int] = []
 
-// populate the list: random array
-//for _ in 1...sizeNumber {
-//    dataSet.append(Int.random(in: 1...100))
-//}
+// populate the list
+// random array
+for _ in 1...sizeNumber {
+    dataSet.append(Int.random(in: 1...100))
+}
 
 // worst case scenario: reversely sorted values
 //for t in 1...sizeNumber {
@@ -36,10 +37,10 @@ var dataSet : [Int] = []
 //}
 
 // other senario: almost sorted values (biggest value is at the front)
-for r in 1...sizeNumber - 1 {
-    dataSet.append(r)
-}
-dataSet.insert(sizeNumber, at: 0)
+//for r in 1...sizeNumber - 1 {
+//    dataSet.append(r)
+//}
+//dataSet.insert(sizeNumber, at: 0)
 
 // print the list
 print("Unsorted:")
@@ -58,7 +59,7 @@ var m = 1
 
 // loop through the array several times and get an average calculated sorting time
 // upper bound is the number of rounds of sorting
-for k in 1...9 {
+for k in 1...10 {
     
     print("start sort \(k)")
     
@@ -113,7 +114,6 @@ for k in 1...9 {
 
     // get time taken for array to sort
     let elapsedTime = endTime - startTime
-    print(elapsedTime)
     
     // calculate the average sorting time
     let averageElapsedTime = elapsedTime / Double(k)
